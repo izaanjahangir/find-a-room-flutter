@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import "package:izaan_want_a_room/screens/welcome/welcome.dart";
+import "package:izaan_want_a_room/screens/login/login.dart";
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: Welcome.screenName,
-      routes: {Welcome.screenName: (context) => Welcome()},
+      routes: {
+        Welcome.screenName: (context) => Welcome(),
+        Login.screenName: (context) => Login()
+      },
     );
   }
 }

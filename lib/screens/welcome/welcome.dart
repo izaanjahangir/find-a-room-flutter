@@ -2,12 +2,17 @@ import "package:flutter/material.dart";
 import "package:izaan_want_a_room/components/background_map/background_map.dart";
 import "package:izaan_want_a_room/components/custom_outline_button/custom_outline_button.dart";
 import 'package:izaan_want_a_room/config/theme_colors.dart';
+import 'package:izaan_want_a_room/screens/login/login.dart';
 
 class Welcome extends StatelessWidget {
   static const String screenName = "/welcome";
 
   @override
   Widget build(BuildContext context) {
+    void navigate() {
+      Navigator.of(context).pushNamed(Login.screenName);
+    }
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -27,7 +32,7 @@ class Welcome extends StatelessWidget {
                     ),
                   ),
                   CustomOutlineButton(
-                    onPressed: () {},
+                    onPressed: navigate,
                     backgroundColor: ThemeColors.white,
                     textColor: ThemeColors.darkBlue,
                     label: "I am Looking for a Room",
@@ -36,7 +41,7 @@ class Welcome extends StatelessWidget {
                     height: 15,
                   ),
                   CustomOutlineButton(
-                    onPressed: () {},
+                    onPressed: navigate,
                     label: "I am Flat Owner",
                   )
                 ],
