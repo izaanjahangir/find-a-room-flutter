@@ -71,6 +71,7 @@ class Login extends StatelessWidget {
                                   disabled: false,
                                   backgroundColor: ThemeColors.lightBlue,
                                   onPressed: () {},
+                                  height: 45,
                                   label: "Login",
                                 )
                               ],

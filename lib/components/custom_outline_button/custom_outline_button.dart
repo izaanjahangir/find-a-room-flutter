@@ -7,13 +7,15 @@ class CustomOutlineButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final bool disabled;
+  final double height;
 
   CustomOutlineButton(
       {this.label = "",
       this.onPressed,
       this.backgroundColor = Colors.transparent,
       this.textColor = ThemeColors.white,
-      this.disabled = false});
+      this.disabled = false,
+      this.height = 55});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class CustomOutlineButton extends StatelessWidget {
             style: OutlinedButton.styleFrom(
               backgroundColor: backgroundColor,
               primary: ThemeColors.white,
-              minimumSize: Size(double.infinity, 55),
+              minimumSize: Size(double.infinity, height),
               side: BorderSide(
                 width: 1,
                 color: ThemeColors.white,
