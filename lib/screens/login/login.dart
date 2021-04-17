@@ -7,78 +7,98 @@ import 'package:izaan_want_a_room/config/theme_colors.dart';
 
 class Login extends StatelessWidget {
   static const String screenName = "/login";
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     final padding = const EdgeInsets.symmetric(horizontal: 20);
+    final size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
-          body: Container(
-        margin: const EdgeInsets.only(top: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: padding,
-              child: BackButtonHeader(),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: padding,
-              child: Text(
-                "Login",
-                style: TextStyle(fontSize: 28),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 20),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      TextInput(
-                        hintText: "Enter address",
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      TextInput(
-                        hintText: "Password",
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CustomOutlineButton(
-                        disabled: false,
-                        backgroundColor: ThemeColors.lightBlue,
-                        onPressed: () {},
-                        label: "Login",
-                      )
-                    ],
-                  ),
+          body: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: padding,
+                  child: BackButtonHeader(),
                 ),
-              ),
+                SingleChildScrollView(
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: padding,
+                          child: Text(
+                            "Login",
+                            style: TextStyle(fontSize: 28),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(top: 20),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          child: Form(
+                            key: _formKey,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                TextInput(
+                                  controller: emailController,
+                                  hintText: "Enter address",
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                TextInput(
+                                    controller: passwordController,
+                                    hintText: "Password",
+                                    obscureText: true),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                CustomOutlineButton(
+                                  disabled: false,
+                                  backgroundColor: ThemeColors.lightBlue,
+                                  onPressed: () {},
+                                  label: "Login",
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
             ),
-            Container(
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
               color: ThemeColors.grey,
-              width: double.infinity,
+              width: size.width,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomTextButton(onTap: () {}, text: "Register an account")
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       )),
     );
   }
