@@ -6,6 +6,7 @@ import 'package:izaan_want_a_room/components/back_button_header/back_button_head
 import 'package:izaan_want_a_room/components/custom_elevated_button/custom_elevated_button.dart';
 import 'package:izaan_want_a_room/components/custom_outline_button/custom_outline_button.dart';
 import 'package:izaan_want_a_room/config/theme_colors.dart';
+import 'package:izaan_want_a_room/screens/home/home.dart';
 import 'package:izaan_want_a_room/screens/select_area/change_radius.dart';
 import 'package:izaan_want_a_room/utils/helpers.dart';
 import 'package:izaan_want_a_room/utils/location.dart';
@@ -159,7 +160,9 @@ class _SelectAreaState extends State<SelectArea> {
                       width: size.width * 0.5,
                       margin: const EdgeInsets.only(bottom: 10),
                       child: CustomElevatedButton(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(Home.screenName);
+                        },
                         label: "Explore",
                       )),
                 )
