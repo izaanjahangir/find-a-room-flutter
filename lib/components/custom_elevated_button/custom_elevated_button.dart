@@ -14,7 +14,7 @@ class CustomElevatedButton extends StatelessWidget {
       this.onTap,
       this.textColor = ThemeColors.white,
       this.disabled = false,
-      this.backgroundColor = ThemeColors.lightBlue,
+      this.backgroundColor = ThemeColors.darkBlue,
       this.height = 55});
 
   @override
@@ -27,6 +27,7 @@ class CustomElevatedButton extends StatelessWidget {
           color: backgroundColor,
           borderRadius: BorderRadius.circular(5),
           child: InkWell(
+            splashColor: ThemeColors.splashWhite,
             onTap: onTap,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),

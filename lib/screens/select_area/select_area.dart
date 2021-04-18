@@ -156,7 +156,7 @@ class _SelectAreaState extends State<SelectArea> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                      width: size.width * 0.3,
+                      width: size.width * 0.5,
                       margin: const EdgeInsets.only(bottom: 10),
                       child: CustomElevatedButton(
                         onTap: () {},

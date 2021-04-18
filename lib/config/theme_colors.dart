@@ -8,4 +8,5 @@ class ThemeColors {
   static const Color black = Colors.black;
   static Color grey = Colors.grey[200];
   static const Color whiteTransparent = Color.fromRGBO(255, 255, 255, 0.7);
+  static const Color splashWhite = Color.fromRGBO(255, 255, 255, 0.1);
 }
