@@ -3,6 +3,8 @@ import "package:flutter/material.dart";
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:izaan_want_a_room/components/back_button_header/back_button_header.dart';
+import 'package:izaan_want_a_room/config/theme_colors.dart';
+import 'package:izaan_want_a_room/utils/helpers.dart';
 import 'package:izaan_want_a_room/utils/location.dart';
 
 class SelectArea extends StatefulWidget {
@@ -19,6 +21,12 @@ class SelectArea extends StatefulWidget {
 
 class _SelectAreaState extends State<SelectArea> {
   final Completer<GoogleMapController> _controller = Completer();
+  static final CameraPosition initialCameraPosition = CameraPosition(
+    target: LatLng(37.42796133580664, -122.085749655962),
+    zoom: 14.4746,
+  );
+  Set<Marker> markers = {};
+  Set<Circle> circles = {};
 
   @override
   void initState() {
@@ -27,11 +35,32 @@ class _SelectAreaState extends State<SelectArea> {
     super.initState();
   }
 
+  Circle createCircle(LatLng latLng) {
+    return Circle(
+        circleId: CircleId("current-location-circle"),
+        center: latLng,
+        strokeWidth: 2,
+        strokeColor: ThemeColors.lightBlue,
+        radius: Helpers.kmToMeters(3),
+        fillColor: ThemeColors.lightBlueTransparent);
+  }
+
   void getCurrentLocation() async {
     try {
       final p = await Location.determinePosition();
 
+      final LatLng latLng = LatLng(p.latitude, p.longitude);
+
       goToLocation(p.latitude, p.longitude);
+      Marker currentLocationMarker = Marker(
+          markerId: MarkerId("current-location-marker"), position: latLng);
+
+      final Circle circle = createCircle(latLng);
+
+      setState(() {
+        markers.add(currentLocationMarker);
+        circles.add(circle);
+      });
     } catch (e) {
       EasyLoading.showError(e["message"]);
     }
@@ -45,7 +74,7 @@ class _SelectAreaState extends State<SelectArea> {
     if (shouldNotZoom) {
       zoom = await controller.getZoomLevel();
     } else {
-      zoom = 19.151926040649414;
+      zoom = 12.5;
     }
 
     CameraPosition cameraPosition = CameraPosition(
@@ -59,7 +88,6 @@ class _SelectAreaState extends State<SelectArea> {
   @override
   Widget build(BuildContext context) {
     final padding = const EdgeInsets.symmetric(horizontal: 20);
-    final size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -75,14 +103,35 @@ class _SelectAreaState extends State<SelectArea> {
               ),
             ),
             Expanded(
-              child: GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: SelectArea._kGooglePlex,
-                onMapCreated: (GoogleMapController controller) {
-                  _controller.complete(controller);
-                },
-              ),
-            )
+                child: GoogleMap(
+              mapType: MapType.normal,
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+              initialCameraPosition: initialCameraPosition,
+              onTap: (LatLng coordinates) {
+                final LatLng latLng =
+                    LatLng(coordinates.latitude, coordinates.longitude);
+
+                Marker currentLocationMarker = Marker(
+                    markerId: MarkerId("current-location-marker"),
+                    position: latLng);
+
+                final Circle circle = createCircle(latLng);
+
+                setState(() {
+                  markers.clear();
+                  circles.clear();
+
+                  markers.add(currentLocationMarker);
+                  circles.add(circle);
+                });
+              },
+              markers: markers,
+              circles: circles,
+              onMapCreated: (GoogleMapController controller) {
+                _controller.complete(controller);
+              },
+            ))
           ],
         ),
       )),

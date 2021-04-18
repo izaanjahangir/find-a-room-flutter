@@ -8,4 +8,8 @@ class Helpers {
       FocusManager.instance.primaryFocus.unfocus();
     }
   }
+
+  static double kmToMeters(double km) {
+    return km * 1000;
+  }
 }
