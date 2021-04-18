@@ -61,6 +61,7 @@ class Login extends StatelessWidget {
                                 children: <Widget>[
                                   TextInput(
                                     controller: emailController,
+                                    keyboardType: TextInputType.emailAddress,
                                     hintText: "Enter address",
                                   ),
                                   SizedBox(
