@@ -4,16 +4,12 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:izaan_want_a_room/components/back_button_header/back_button_header.dart';
 import 'package:izaan_want_a_room/config/theme_colors.dart';
+import 'package:izaan_want_a_room/screens/select_area/change_radius.dart';
 import 'package:izaan_want_a_room/utils/helpers.dart';
 import 'package:izaan_want_a_room/utils/location.dart';
 
 class SelectArea extends StatefulWidget {
   static const String screenName = "/select-area";
-
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
 
   @override
   _SelectAreaState createState() => _SelectAreaState();
@@ -27,6 +23,7 @@ class _SelectAreaState extends State<SelectArea> {
   );
   Set<Marker> markers = {};
   Set<Circle> circles = {};
+  double radius = 3;
 
   @override
   void initState() {
@@ -35,13 +32,13 @@ class _SelectAreaState extends State<SelectArea> {
     super.initState();
   }
 
-  Circle createCircle(LatLng latLng) {
+  Circle createCircle(LatLng latLng, double r) {
     return Circle(
         circleId: CircleId("current-location-circle"),
         center: latLng,
         strokeWidth: 2,
         strokeColor: ThemeColors.lightBlue,
-        radius: Helpers.kmToMeters(3),
+        radius: Helpers.kmToMeters(r),
         fillColor: ThemeColors.lightBlueTransparent);
   }
 
@@ -55,7 +52,7 @@ class _SelectAreaState extends State<SelectArea> {
       Marker currentLocationMarker = Marker(
           markerId: MarkerId("current-location-marker"), position: latLng);
 
-      final Circle circle = createCircle(latLng);
+      final Circle circle = createCircle(latLng, radius);
 
       setState(() {
         markers.add(currentLocationMarker);
@@ -85,6 +82,17 @@ class _SelectAreaState extends State<SelectArea> {
     controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
   }
 
+  void changeRadius(double value) {
+    final Circle c = circles.elementAt(0);
+    final Circle c2 = createCircle(c.center, value);
+
+    setState(() {
+      radius = value;
+      circles.clear();
+      circles.add(c2);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final padding = const EdgeInsets.symmetric(horizontal: 20);
@@ -103,34 +111,46 @@ class _SelectAreaState extends State<SelectArea> {
               ),
             ),
             Expanded(
-                child: GoogleMap(
-              mapType: MapType.normal,
-              myLocationEnabled: true,
-              myLocationButtonEnabled: true,
-              initialCameraPosition: initialCameraPosition,
-              onTap: (LatLng coordinates) {
-                final LatLng latLng =
-                    LatLng(coordinates.latitude, coordinates.longitude);
+                child: Stack(
+              children: [
+                GoogleMap(
+                  compassEnabled: false,
+                  mapType: MapType.normal,
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: true,
+                  initialCameraPosition: initialCameraPosition,
+                  onTap: (LatLng coordinates) {
+                    final LatLng latLng =
+                        LatLng(coordinates.latitude, coordinates.longitude);
 
-                Marker currentLocationMarker = Marker(
-                    markerId: MarkerId("current-location-marker"),
-                    position: latLng);
+                    Marker currentLocationMarker = Marker(
+                        markerId: MarkerId("current-location-marker"),
+                        position: latLng);
 
-                final Circle circle = createCircle(latLng);
+                    final Circle circle = createCircle(latLng, radius);
 
-                setState(() {
-                  markers.clear();
-                  circles.clear();
+                    setState(() {
+                      markers.clear();
+                      circles.clear();
 
-                  markers.add(currentLocationMarker);
-                  circles.add(circle);
-                });
-              },
-              markers: markers,
-              circles: circles,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
+                      markers.add(currentLocationMarker);
+                      circles.add(circle);
+                    });
+                  },
+                  markers: markers,
+                  circles: circles,
+                  onMapCreated: (GoogleMapController controller) {
+                    _controller.complete(controller);
+                  },
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: ChangeRadius(
+                    radius: radius,
+                    onChanged: changeRadius,
+                  ),
+                )
+              ],
             ))
           ],
         ),
