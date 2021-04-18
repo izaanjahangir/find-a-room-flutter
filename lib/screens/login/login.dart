@@ -5,6 +5,7 @@ import 'package:izaan_want_a_room/components/custom_text_button/custom_text_butt
 import 'package:izaan_want_a_room/components/text_input/text_input.dart';
 import 'package:izaan_want_a_room/config/theme_colors.dart';
 import 'package:izaan_want_a_room/screens/register/register.dart';
+import 'package:izaan_want_a_room/screens/select_area/select_area.dart';
 import 'package:izaan_want_a_room/utils/helpers.dart';
 
 class Login extends StatelessWidget {
@@ -77,7 +78,10 @@ class Login extends StatelessWidget {
                                   CustomOutlineButton(
                                     disabled: false,
                                     backgroundColor: ThemeColors.lightBlue,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .pushNamed(SelectArea.screenName);
+                                    },
                                     height: 45,
                                     label: "Login",
                                   )
