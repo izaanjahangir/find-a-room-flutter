@@ -3,6 +3,8 @@ import "package:flutter/material.dart";
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:izaan_want_a_room/components/back_button_header/back_button_header.dart';
+import 'package:izaan_want_a_room/components/custom_elevated_button/custom_elevated_button.dart';
+import 'package:izaan_want_a_room/components/custom_outline_button/custom_outline_button.dart';
 import 'package:izaan_want_a_room/config/theme_colors.dart';
 import 'package:izaan_want_a_room/screens/select_area/change_radius.dart';
 import 'package:izaan_want_a_room/utils/helpers.dart';
@@ -96,6 +98,7 @@ class _SelectAreaState extends State<SelectArea> {
   @override
   Widget build(BuildContext context) {
     final padding = const EdgeInsets.symmetric(horizontal: 20);
+    final size = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -149,6 +152,16 @@ class _SelectAreaState extends State<SelectArea> {
                     radius: radius,
                     onChanged: changeRadius,
                   ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                      width: size.width * 0.3,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child: CustomElevatedButton(
+                        onTap: () {},
+                        label: "Explore",
+                      )),
                 )
               ],
             ))
