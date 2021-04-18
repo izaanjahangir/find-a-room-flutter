@@ -14,15 +14,18 @@ class BackButtonHeader extends StatelessWidget {
     }
 
     return Container(
-      height: 30,
+      height: 40,
       child: Stack(
         children: [
-          TouchableOpacity(
-            onTap: goBack,
-            child: Icon(
-              Icons.arrow_back_ios,
-              size: 30,
-              color: ThemeColors.lightBlue,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TouchableOpacity(
+              onTap: goBack,
+              child: Icon(
+                Icons.arrow_back_ios,
+                size: 25,
+                color: ThemeColors.lightBlue,
+              ),
             ),
           ),
           if (label != null)
@@ -30,7 +33,7 @@ class BackButtonHeader extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 label,
-                style: TextStyle(color: ThemeColors.black, fontSize: 20),
+                style: TextStyle(color: ThemeColors.black, fontSize: 18),
               ),
             )
         ],

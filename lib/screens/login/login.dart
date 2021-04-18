@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
             body: Stack(
           children: [
             Container(
-              margin: const EdgeInsets.only(top: 15),
+              margin: const EdgeInsets.only(top: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -42,7 +42,7 @@ class Login extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 20,
+                            height: 5,
                           ),
                           Padding(
                             padding: padding,
@@ -52,7 +52,7 @@ class Login extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(top: 20),
+                            margin: const EdgeInsets.only(top: 10),
                             padding: const EdgeInsets.symmetric(
                                 vertical: 10, horizontal: 20),
                             child: Form(
