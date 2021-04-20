@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:izaan_want_a_room/screens/home/home_item.dart';
+import 'package:izaan_want_a_room/screens/post_details/post_details.dart';
 
 class Home extends StatefulWidget {
   static const String screenName = "/home";
@@ -16,6 +17,10 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    void navigateToDetails() {
+      Navigator.of(context).pushNamed(PostDetails.screenName);
+    }
+
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
@@ -23,27 +28,9 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
-            HomeItem(),
+            HomeItem(
+              onTap: navigateToDetails,
+            ),
           ],
         ),
       ),

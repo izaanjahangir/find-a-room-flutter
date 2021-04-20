@@ -2,6 +2,10 @@ import "package:flutter/material.dart";
 import 'package:izaan_want_a_room/config/theme_colors.dart';
 
 class HomeItem extends StatelessWidget {
+  final Function onTap;
+
+  HomeItem({@required this.onTap});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -14,7 +18,9 @@ class HomeItem extends StatelessWidget {
         child: Material(
           color: ThemeColors.white,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              onTap();
+            },
             child: Container(
               height: size.width * 0.2,
               child: Row(

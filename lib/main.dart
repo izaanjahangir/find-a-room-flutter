@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:izaan_want_a_room/screens/home_tab/home_tab.dart';
+import 'package:izaan_want_a_room/screens/post_details/post_details.dart';
 import 'package:izaan_want_a_room/screens/register/register.dart';
 import 'package:izaan_want_a_room/screens/select_area/select_area.dart';
 import "package:izaan_want_a_room/screens/welcome/welcome.dart";
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         Register.screenName: (context) => Register(),
         SelectArea.screenName: (context) => SelectArea(),
         HomeTab.screenName: (context) => HomeTab(),
+        PostDetails.screenName: (context) => PostDetails(),
       },
     );
   }
