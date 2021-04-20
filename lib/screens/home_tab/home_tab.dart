@@ -19,7 +19,18 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
   void initState() {
     _tabController = new TabController(length: 2, vsync: this);
 
+    _tabController.addListener(() {
+      setState(() {});
+    });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _tabController.removeListener(() {});
+
+    super.dispose();
   }
 
   @override
@@ -51,11 +62,17 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                 ),
                 tabs: [
                   CustomTab(
-                    icon: Icons.home,
+                    active: _tabController.index == 0,
+                    icon: AssetImage("assets/icons/home-unactive.png"),
+                    activeIcon: AssetImage("assets/icons/home-active.png"),
                     label: 'Home',
                   ),
                   CustomTab(
-                    icon: Icons.person,
+                    active: _tabController.index == 1,
+                    icon: AssetImage("assets/images/dummy-user.jpeg"),
+                    activeIcon: AssetImage("assets/images/dummy-user.jpeg"),
+                    roundIcon: true,
+                    iconAsImage: true,
                     label: 'Profile',
                   ),
                 ],
