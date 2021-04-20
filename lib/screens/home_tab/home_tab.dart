@@ -45,6 +45,23 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              PhysicalModel(
+                color: ThemeColors.black,
+                elevation: 2,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  width: double.infinity,
+                  color: ThemeColors.white,
+                  child: Center(
+                      child: Text(
+                    "Home",
+                    style: TextStyle(
+                        color: ThemeColors.lightBlue,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  )),
+                ),
+              ),
               Expanded(
                 child: TabBarView(
                   children: [
