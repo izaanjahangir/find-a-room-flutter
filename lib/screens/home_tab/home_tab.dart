@@ -54,30 +54,32 @@ class _HomeTabState extends State<HomeTab> with SingleTickerProviderStateMixin {
                   controller: _tabController,
                 ),
               ),
-              TabBar(
-                unselectedLabelColor: ThemeColors.darkGrey,
-                labelColor: ThemeColors.lightBlue,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.zero,
+              Material(
+                color: ThemeColors.white,
+                child: TabBar(
+                  unselectedLabelColor: ThemeColors.darkGrey,
+                  labelColor: ThemeColors.lightBlue,
+                  labelPadding: const EdgeInsets.symmetric(vertical: 5),
+                  indicator: BoxDecoration(borderRadius: BorderRadius.zero),
+                  tabs: [
+                    CustomTab(
+                      active: _tabController.index == 0,
+                      icon: AssetImage("assets/icons/home-unactive.png"),
+                      activeIcon: AssetImage("assets/icons/home-active.png"),
+                      label: 'Home',
+                    ),
+                    CustomTab(
+                      active: _tabController.index == 1,
+                      icon: AssetImage("assets/images/dummy-user.jpeg"),
+                      activeIcon: AssetImage("assets/images/dummy-user.jpeg"),
+                      roundIcon: true,
+                      iconAsImage: true,
+                      label: 'Profile',
+                    ),
+                  ],
+                  controller: _tabController,
+                  indicatorSize: TabBarIndicatorSize.tab,
                 ),
-                tabs: [
-                  CustomTab(
-                    active: _tabController.index == 0,
-                    icon: AssetImage("assets/icons/home-unactive.png"),
-                    activeIcon: AssetImage("assets/icons/home-active.png"),
-                    label: 'Home',
-                  ),
-                  CustomTab(
-                    active: _tabController.index == 1,
-                    icon: AssetImage("assets/images/dummy-user.jpeg"),
-                    activeIcon: AssetImage("assets/images/dummy-user.jpeg"),
-                    roundIcon: true,
-                    iconAsImage: true,
-                    label: 'Profile',
-                  ),
-                ],
-                controller: _tabController,
-                indicatorSize: TabBarIndicatorSize.tab,
               ),
             ],
           ),

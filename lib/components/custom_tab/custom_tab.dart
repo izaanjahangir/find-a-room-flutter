@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 class CustomTab extends StatelessWidget {
   final String label;
   final bool active;
-  final double size = 20;
+  final double size = 25;
   final AssetImage icon;
   final AssetImage activeIcon;
   final bool roundIcon;
@@ -45,6 +45,9 @@ class CustomTab extends StatelessWidget {
                   image: iconToRender,
                 ),
               ),
+        SizedBox(
+          height: 5,
+        ),
         Text(
           label,
           style: TextStyle(fontSize: 12),
