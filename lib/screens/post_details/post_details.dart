@@ -37,6 +37,7 @@ class _PostDetailsState extends State<PostDetails> {
               child: SingleChildScrollView(
                 child: Container(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Stack(
                         children: [
@@ -46,7 +47,7 @@ class _PostDetailsState extends State<PostDetails> {
                             left: 0,
                             child: Container(
                               width: size.width,
-                              color: Color.fromRGBO(0, 0, 0, 0.5),
+                              color: Color.fromRGBO(0, 0, 0, 0.4),
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 10),
                               child: Text(
@@ -82,7 +83,43 @@ class _PostDetailsState extends State<PostDetails> {
                       Container(
                           margin: const EdgeInsets.only(top: 10),
                           padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: Indicators(activeIndex: currentCarouselIndex))
+                          child: Indicators(activeIndex: currentCarouselIndex)),
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Some title here",
+                              style: TextStyle(
+                                fontSize: 22,
+                              ),
+                            ),
+                            Text(
+                              "Some address",
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 16, color: ThemeColors.lightBlue),
+                            ),
+                            Divider(
+                              height: 30,
+                              thickness: 1,
+                              color: ThemeColors.darkGrey,
+                              indent: 0,
+                              endIndent: 0,
+                            ),
+                            Text(
+                              "Description",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                                "Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here ",
+                                style: TextStyle(fontSize: 14))
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
