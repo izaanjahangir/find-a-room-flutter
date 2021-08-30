@@ -7,6 +7,7 @@ import 'package:izaan_want_a_room/config/theme_colors.dart';
 // import 'package:izaan_want_a_room/config/theme_colors.dart';
 import 'package:izaan_want_a_room/screens/post_details/carousel.dart';
 import 'package:izaan_want_a_room/screens/post_details/indicators.dart';
+import 'package:izaan_want_a_room/screens/post_details/more_Images.dart';
 import 'package:touchable_opacity/touchable_opacity.dart';
 
 class PostDetails extends StatefulWidget {
@@ -34,6 +35,7 @@ class _PostDetailsState extends State<PostDetails> {
       child: Scaffold(
           body: Container(
               margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(bottom: 15),
               child: SingleChildScrollView(
                 child: Container(
                   child: Column(
@@ -96,6 +98,9 @@ class _PostDetailsState extends State<PostDetails> {
                                 fontSize: 22,
                               ),
                             ),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(
                               "Some address",
                               maxLines: 3,
@@ -114,9 +119,20 @@ class _PostDetailsState extends State<PostDetails> {
                               "Description",
                               style: TextStyle(fontSize: 20),
                             ),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(
                                 "Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here Some description here ",
-                                style: TextStyle(fontSize: 14))
+                                style: TextStyle(fontSize: 14)),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "More Images",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            MoreImages()
                           ],
                         ),
                       ),
